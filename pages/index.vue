@@ -183,50 +183,20 @@
 
     <section class="section">
       <div class="container">
-        <h2 class="hdg">FAQ {{ test }}</h2>
+        <h2 class="hdg">FAQ</h2>
 
         <no-ssr>
           <tabs>
-            <tab name="First tab">
-              <div class="faq">
-                <p class="faq__q">Lorem ipsum dolor sit amet.</p>
-                <p class="faq__a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?</p>
-              </div>
-              <div class="faq">
-                <p class="faq__q">Lorem ipsum dolor sit amet.</p>
-                <p class="faq__a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?</p>
-              </div>
-              <div class="faq">
-                <p class="faq__q">Lorem ipsum dolor sit amet.</p>
-                <p class="faq__a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?</p>
-              </div>
-            </tab>
-            <tab name="Second tab">
-              <div class="faq">
-                <p class="faq__q">Lorem ipsum dolor sit amet.</p>
-                <p class="faq__a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?</p>
-              </div>
-              <div class="faq">
-                <p class="faq__q">Lorem ipsum dolor sit amet.</p>
-                <p class="faq__a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?</p>
-              </div>
-              <div class="faq">
-                <p class="faq__q">Lorem ipsum dolor sit amet.</p>
-                <p class="faq__a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?</p>
-              </div>
-            </tab>
-            <tab name="Third tab">
-              <div class="faq">
-                <p class="faq__q">Lorem ipsum dolor sit amet.</p>
-                <p class="faq__a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?</p>
-              </div>
-              <div class="faq">
-                <p class="faq__q">Lorem ipsum dolor sit amet.</p>
-                <p class="faq__a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?</p>
-              </div>
-              <div class="faq">
-                <p class="faq__q">Lorem ipsum dolor sit amet.</p>
-                <p class="faq__a">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?</p>
+            <tab 
+              v-for="item in tab"
+              :key="item.title"
+              :name="item.title">
+              <div 
+                v-for="list in item.list"
+                :key="list.q"
+                class="faq">
+                <p class="faq__q">{{ reversedFaq(list.q) }}</p>
+                <p class="faq__a">{{ reversedFaq(list.a) }}</p>
               </div>
             </tab>
           </tabs>
@@ -247,10 +217,70 @@ export default {
       user
     }
   },
-
   data: function() {
     return {
-      test: 1111,
+      tab: [
+        {
+          title: 'First Tab',
+          list: [
+            {
+              q: 'Lorem ipsum dolor sit amet.',
+              a:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?'
+            },
+            {
+              q: 'Lorem ipsum dolor sit amet.',
+              a:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?'
+            },
+            {
+              q: 'Lorem ipsum dolor sit amet.',
+              a:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?'
+            }
+          ]
+        },
+        {
+          title: 'Second Tab',
+          list: [
+            {
+              q: 'Lorem ipsum dolor sit amet.',
+              a:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?'
+            },
+            {
+              q: 'Lorem ipsum dolor sit amet.',
+              a:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?'
+            },
+            {
+              q: 'Lorem ipsum dolor sit amet.',
+              a:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?'
+            }
+          ]
+        },
+        {
+          title: 'Third Tab',
+          list: [
+            {
+              q: 'Lorem ipsum dolor sit amet.',
+              a:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?'
+            },
+            {
+              q: 'Lorem ipsum dolor sit amet.',
+              a:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?'
+            },
+            {
+              q: 'Lorem ipsum dolor sit amet.',
+              a:
+                'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut hic atque harum velit minus mollitia reprehenderit quis iure illum optio eos voluptatem consectetur, temporibus reiciendis in adipisci saepe accusamus rem?'
+            }
+          ]
+        }
+      ],
       activeFaq: 0,
       news: [
         {
@@ -278,7 +308,14 @@ export default {
       ]
     }
   },
-
+  methods: {
+    reversedFaq: function(faq) {
+      return faq
+        .split('')
+        .reverse()
+        .join('')
+    }
+  },
   head() {
     return {
       meta: [
